@@ -174,7 +174,7 @@ def display_raw_data(df):
         end_row += 5
         raw_request = input ('Would you like to see 5 more rows of raw data? yes / no: \n').lower() 
     else :
-        print('Goodbye!')
+        print('Hopefully the insights provided were helpful. Feel free to use this tool anytime!')
 
 
 def main():
