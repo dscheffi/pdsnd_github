@@ -6,8 +6,11 @@
 ### Project Title
 Project 3 of Udacity Data Science
 
-### Description
+### Task Description
 The Project is submitted to demonstrate the knowledge of Version Control Basics by using the output of Project 2 on Bikeshare data
+
+### Project Content
+The Bikeshare Data of three stores (i.e. three cities) can be analyzed and compared with a given questionnaire
 
 ### Files used
 bikeshare.py
