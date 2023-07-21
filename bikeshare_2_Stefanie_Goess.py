@@ -71,29 +71,32 @@ def load_data(city, month, day):
 
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
-
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    # display the most common month
-    df['month'] = df['Start Time'].dt.month
+    # Calculate the most common month
     popular_month = df['month'].mode()[0]
-    print('Most Frequent Month:', reverse_month[popular_month])
+    most_common_month_name = reverse_month[popular_month]
+    print('Most Frequent Month:', most_common_month_name)
 
-    # display the most common day of week
-    df['Start Time'] = pd.DatetimeIndex(df['Start Time'])
-    df['day'] = df['Start Time'].dt.weekday
-    popular_day = df['day'].mode()[0]
+    # Calculate the most common day of the week
+    popular_day = df['day_of_week'].mode()[0]
     print('Most Frequent Weekday (only relevant if you selected ALL days before):', reverse_day[popular_day])
     
-    # display the most common start hour
-    df['Start Time'] = pd.to_datetime(df['Start Time'])
-    df['hour'] = df['Start Time'].dt.hour
-    popular_hour = df['hour'].mode()[0] 
+    # Calculate the most common start hour
+    popular_hour = df['Start Time'].dt.hour.mode()[0]
     print('Most Frequent Start Hour:', popular_hour)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+
+    # Return the calculated values as a dictionary (optional, but can be useful for later use)
+    return {
+        'most_common_month': most_common_month_name,
+        'most_common_weekday': reverse_day[popular_day],
+        'most_common_hour': popular_hour
+    }
+
 
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
@@ -174,7 +177,7 @@ def display_raw_data(df):
         end_row += 5
         raw_request = input ('Would you like to see 5 more rows of raw data? yes / no: \n').lower() 
     else :
-        print('Goodbye!')
+        print('Hopefully the insights provided were helpful. Feel free to use this tool anytime!')
 
 
 def main():
